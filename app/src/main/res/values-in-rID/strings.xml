@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Git Hub User</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_dashboard">Dasbor</string>
+    <string name="title_notifications">Notifikasi</string>
+    <string name="myname">Anna Karenina</string>
+    <string name="followers">Pengikut</string>
+    <string name="username">itsannazzle</string>
+    <string name="following">Mengikuti</string>
+    <string name="explore">Jelajah</string>
+    <string name="pull_req">Kirim permintaan</string>
+    <string name="market">Pasar</string>
+    <string name="title_repo">Gudang</string>
+    <string name="description">Deskripsi</string>
+    <string name="prog_lang">kotlin</string>
+    <string name="stars">Bintang</string>
+    <string name="branch">Cabang</string>
+    <string name="follow">Ikuti</string>
+    <string name="language_setting">Pengaturan bahasa</string>
+    <string name="repositories">Gudang</string>
+    <string name="search_result">Hasil pencarian</string>
+    <string name="searchhint">Cari pengguna</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Halo fragment kosong</string>
+</resources>

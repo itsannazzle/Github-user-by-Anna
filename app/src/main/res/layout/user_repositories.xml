@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="274dp"
+    android:layout_height="120dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="1dp"
+    android:layout_marginEnd="16dp"
+    app:strokeColor="@color/grey"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/card_surface">
+    <RelativeLayout
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/user_repo"
+            android:drawablePadding="4dp"
+            style="@style/sub_title"
+            android:textColor="@color/git_blue"
+            android:text="@string/title_repo"
+            app:drawableStartCompat="@drawable/ic_bx_bx_book_bookmark" />
+        <TextView
+            android:id="@+id/user_repodesc"
+            android:layout_marginStart="23dp"
+            android:layout_below="@id/user_repo"
+            android:text="@string/description"
+            android:maxLength="40"
+            style="@style/body_copy"
+            android:textColor="@color/low_black"
+            />
+        <TextView
+            android:id="@+id/user_repo_lang"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:drawablePadding="4dp"
+            style="@style/body_copy"
+            android:text="@string/prog_lang"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/low_black"
+            app:drawableStartCompat="@drawable/circle_kotlin" />
+        <TextView
+            android:id="@+id/user_repo_stars"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/user_repo_lang"
+            android:layout_alignParentBottom="true"
+            android:drawablePadding="4dp"
+            style="@style/body_copy"
+            android:text="@string/stars"
+            android:textColor="@color/low_black"
+            app:drawableStartCompat="@drawable/ic_star" />
+        <TextView
+            android:id="@+id/user_repo_branch"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@id/user_repo_stars"
+            android:layout_marginStart="16dp"
+            android:drawablePadding="4dp"
+            style="@style/body_copy"
+            android:text="@string/branch"
+            android:textColor="@color/low_black"
+            app:drawableStartCompat="@drawable/ic_ph_git_branch_thin" />
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
