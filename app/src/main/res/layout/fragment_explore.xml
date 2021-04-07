@@ -13,6 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="1"
+        app:defaultQueryHint="@string/following"
+        android:background="@drawable/search_field"
+        app:searchIcon="@drawable/ic_github_search"
+        android:autofillHints="@string/searchhint"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,11 +38,10 @@
         style="@style/sub_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="@string/search_result"
-        android:visibility="invisible"
+        android:layout_marginTop="8dp"
+        android:text="@string/popular_user"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/searchIcon" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchResult"

@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.dashboard.DashboardFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
         android:id="@+id/user_imager"
         android:layout_width="55dp"
         android:layout_height="55dp"
@@ -15,16 +16,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/progresBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:paddingTop="16dp"
         android:id="@+id/name"
         style="@style/sub_title"
         android:layout_width="wrap_content"
@@ -72,23 +66,31 @@
         app:layout_constraintStart_toEndOf="@+id/follwers"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
-    <TextView
-        android:id="@+id/textView6"
-        style="@style/sub_title"
-        android:layout_width="wrap_content"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/dashboard_tab"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/repositories"
-        android:textColor="@color/black"
+        android:layout_marginTop="24dp"
+        app:tabBackground="@color/white"
+        app:tabIndicatorHeight="2dp"
+        app:tabIndicatorColor="@color/git_blue"
+        app:tabSelectedTextColor="@color/git_blue"
+        app:tabTextColor="@color/grey"
+        app:tabIconTint="@color/ic_tab_color"
+        app:tabTextAppearance="@style/CustomTabStyle"
+        app:tabInlineLabel="true"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_imager" />
+        app:layout_constraintTop_toBottomOf="@+id/user_imager">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_repouser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/user_repositories"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager2"
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_tab"
+        android:layout_marginTop="8dp"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

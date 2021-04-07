@@ -11,6 +11,7 @@ import com.example.githubuser.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
 
 class ExploreViewModel : ViewModel() {
     private val TAG = ExploreViewModel::class.java.simpleName
@@ -27,6 +28,8 @@ class ExploreViewModel : ViewModel() {
     val showFollowers : LiveData<List<User>> = userFollowers
     private val userFollowing : MutableLiveData<List<User>> = MutableLiveData()
     val showFollowing : LiveData<List<User>> = userFollowing
+    private val popular : MutableLiveData<List<User>> = MutableLiveData()
+    val showPopularUser : LiveData<List<User>> = popular
 
 
     fun loadUser(query : String){
@@ -80,6 +83,19 @@ class ExploreViewModel : ViewModel() {
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
                 Log.d(TAG, "Request time over")
+            }
+
+        })
+    }
+
+    fun popolarUser(){
+        RetrofitInstance.getRetrofit().popuralUser().enqueue(object : Callback<List<User>>{
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                popular.postValue(response.body())
+            }
+
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                TODO("Not yet implemented")
             }
 
         })

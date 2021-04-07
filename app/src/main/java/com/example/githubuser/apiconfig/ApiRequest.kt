@@ -23,6 +23,10 @@ interface ApiRequest {
                    username : String) : Call<SearchUser>
     /*call aja dari json object, gapake arraylist, only generic karena data di json nya object(diawali dengan { )*/
 
+    @GET("users")
+    @Headers("Authorization: token 98988805a0011805189ea1bbfe87283301efcaf8")
+    fun popuralUser() : Call<List<User>>
+
     @GET("users/{username}/repos")
     @Headers("Authorization: token 98988805a0011805189ea1bbfe87283301efcaf8")
     fun getRepos(@Path("username")

@@ -12,53 +12,39 @@ import com.example.githubuser.R
 import com.example.githubuser.adapter.UserRepoAdapter
 import com.example.githubuser.databinding.FragmentDashboardBinding
 import com.example.githubuser.ui.explore.ExploreViewModel
+import com.google.android.material.tabs.TabLayoutMediator
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
-    private lateinit var userRepoAdapter: UserRepoAdapter
-    private val dashboardViewModel : DashboardViewModel by activityViewModels()
     private val exploreViewModel : ExploreViewModel by activityViewModels()
-
+    companion object{
+        private var TAB_TITLE = intArrayOf(
+                R.string.overview,
+                R.string.project,
+                R.string.text_package
+        )
+    }
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
         binding = FragmentDashboardBinding.inflate(inflater,container,false)
+        val dashboardSectionAdapter = DashboardSectionAdapter(
+                requireActivity().supportFragmentManager,
+                lifecycle
+        )
+        binding.viewpager2.adapter = dashboardSectionAdapter
+        TabLayoutMediator(binding.dashboardTab, binding.viewpager2) { tab, position ->
+            tab.text = resources.getString(TAB_TITLE[position])
+        }.attach()
+        binding.dashboardTab.getTabAt(0)?.setIcon(R.drawable.ic_dashboard)
+        binding.dashboardTab.getTabAt(1)?.setIcon(R.drawable.ic_github_search)
+        binding.dashboardTab.getTabAt(2)?.setIcon(R.drawable.ic_explore)
 
-        showLoading(true)
-        userRepoAdapter = UserRepoAdapter()
-        userRepoAdapter.notifyDataSetChanged()
+
         showDetail()
         return binding.root
-    }
-
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        dashboardViewModel.getRepo("itsannazzle")
-
-        /*jangan observe data di event listener karna akan terjadi memory leaks, correct me if im wrong*/
-        dashboardViewModel.showRepository.observe(viewLifecycleOwner, {
-            UserRepository -> if (UserRepository  != null){
-                userRepoAdapter.setUserData(UserRepository)
-
-            showLoading(false)
-        }
-        })
-
-        binding.rvRepouser.adapter = userRepoAdapter
-        binding.rvRepouser.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
-
-    }
-
-    private fun showLoading(state: Boolean) {
-        if (state){
-            binding.progresBar.visibility = View.VISIBLE
-        } else {
-            binding.progresBar.visibility = View.INVISIBLE
-        }
     }
 
 
@@ -70,12 +56,12 @@ class DashboardFragment : Fragment() {
                 if (it.followers.toString().isNullOrEmpty()){
                     binding.follwers.text = StringBuilder("-")
                 } else {
-                    binding.follwers.text = it.followers.toString()
+                    binding.follwers.text = StringBuilder("${it.followers.toString()} Followers")
                 }
                 if (it.following.toString().isNullOrEmpty()){
                     binding.following.text = StringBuilder("-")
                 } else{
-                    binding.following.text = it.following.toString()
+                    binding.following.text = StringBuilder("${it.followers.toString()} Following")
                 }
                 if(it.avatar.isNullOrEmpty()){
                     context?.applicationContext?.let { it1 ->

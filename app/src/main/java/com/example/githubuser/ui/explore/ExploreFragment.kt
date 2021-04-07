@@ -24,12 +24,24 @@ class ExploreFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View {
         binding = FragmentExploreBinding.inflate(inflater, container, false)
-
         searchResultAdapter = SearchResultAdapter()
         searchResultAdapter.notifyDataSetChanged()
-        binding.searchResult.adapter = searchResultAdapter
-        binding.searchResult.layoutManager = LinearLayoutManager(activity)
-        showLoading(false)
+        showLoading(true)
+
+        exploreViewModel.showPopularUser.observe(viewLifecycleOwner){
+            User -> if ( User != null) {
+            searchResultAdapter.addUser(User as ArrayList<User>)
+            binding.searchResult.adapter = searchResultAdapter
+            binding.searchResult.layoutManager = LinearLayoutManager(activity)
+            showLoading(false)
+        }
+        }
+        exploreViewModel.popolarUser()
+        binding.textView7.setText("Popular user")
+        binding.searchIcon.setOnClickListener {
+            binding.searchIcon.isIconified = false
+
+        }
 
         return binding.root
     }
@@ -41,6 +53,8 @@ class ExploreFragment : Fragment() {
         exploreViewModel.getListUser.observe(viewLifecycleOwner){
             User -> if (User != null) {
             searchResultAdapter.addUser(User as ArrayList<User>)
+            binding.searchResult.adapter = searchResultAdapter
+            binding.searchResult.layoutManager = LinearLayoutManager(activity)
             showLoading(false)
             binding.textView7.visibility = View.VISIBLE
         }
