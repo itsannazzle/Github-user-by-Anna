@@ -1,8 +1,11 @@
-package com.example.githubuser.ui.explore
+package com.example.githubuser.adapter
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.githubuser.ui.explore.Followers
+import com.example.githubuser.ui.explore.Following
+import com.example.githubuser.ui.explore.Repository
 
 class SectionAdapter(activity: AppCompatActivity)
     : FragmentStateAdapter(

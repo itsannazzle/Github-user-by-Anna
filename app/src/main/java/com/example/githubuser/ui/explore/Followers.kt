@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuser.adapter.SearchResultAdapter
 import com.example.githubuser.databinding.FragmentFollowersBinding
 import com.example.githubuser.model.User
+import com.example.githubuser.viewmodel.ExploreViewModel
 
 
 class Followers : Fragment() {
@@ -32,6 +33,7 @@ class Followers : Fragment() {
         exploreViewModel.showFollowers.observe(viewLifecycleOwner){
             User -> if (User != null) {
             searchResultAdapter.addUser(User as ArrayList<User>)
+
             showLoading(false)
         }
         }

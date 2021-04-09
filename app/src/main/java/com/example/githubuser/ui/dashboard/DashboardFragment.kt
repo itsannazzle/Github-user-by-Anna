@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.githubuser.R
-import com.example.githubuser.adapter.UserRepoAdapter
+import com.example.githubuser.adapter.DashboardSectionAdapter
 import com.example.githubuser.databinding.FragmentDashboardBinding
-import com.example.githubuser.ui.explore.ExploreViewModel
+import com.example.githubuser.viewmodel.ExploreViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DashboardFragment : Fragment() {
@@ -31,17 +30,16 @@ class DashboardFragment : Fragment() {
     ): View {
         binding = FragmentDashboardBinding.inflate(inflater,container,false)
         val dashboardSectionAdapter = DashboardSectionAdapter(
-                requireActivity().supportFragmentManager,
+                childFragmentManager,
                 lifecycle
         )
         binding.viewpager2.adapter = dashboardSectionAdapter
         TabLayoutMediator(binding.dashboardTab, binding.viewpager2) { tab, position ->
             tab.text = resources.getString(TAB_TITLE[position])
         }.attach()
-        binding.dashboardTab.getTabAt(0)?.setIcon(R.drawable.ic_dashboard)
-        binding.dashboardTab.getTabAt(1)?.setIcon(R.drawable.ic_github_search)
-        binding.dashboardTab.getTabAt(2)?.setIcon(R.drawable.ic_explore)
-
+        binding.dashboardTab.getTabAt(0)?.setIcon(R.drawable.ic_book)
+        binding.dashboardTab.getTabAt(1)?.setIcon(R.drawable.ic_project)
+        binding.dashboardTab.getTabAt(2)?.setIcon(R.drawable.ic_package)
 
         showDetail()
         return binding.root

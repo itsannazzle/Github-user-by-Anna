@@ -1,4 +1,4 @@
-package com.example.githubuser.ui.explore
+package com.example.githubuser.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,7 +11,6 @@ import com.example.githubuser.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class ExploreViewModel : ViewModel() {
     private val TAG = ExploreViewModel::class.java.simpleName

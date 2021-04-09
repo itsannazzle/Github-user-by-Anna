@@ -1,4 +1,4 @@
-package com.example.githubuser.ui.notifications
+package com.example.githubuser.ui.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.githubuser.R
+import com.example.githubuser.viewmodel.NotificationsViewModel
 
 class NotificationsFragment : Fragment() {
 

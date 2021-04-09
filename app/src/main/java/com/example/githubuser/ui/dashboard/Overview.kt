@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuser.R
 import com.example.githubuser.adapter.UserRepoAdapter
 import com.example.githubuser.databinding.FragmentOverviewBinding
+import com.example.githubuser.viewmodel.DashboardViewModel
 
 class Overview : Fragment() {
     private lateinit var binding: FragmentOverviewBinding

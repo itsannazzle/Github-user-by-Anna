@@ -6,14 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuser.R
 import com.example.githubuser.adapter.UserRepoAdapter
 import com.example.githubuser.databinding.FragmentRepositoryBinding
 import com.example.githubuser.model.User
-import com.example.githubuser.model.UserRepository
-import com.example.githubuser.ui.dashboard.DashboardViewModel
+import com.example.githubuser.viewmodel.DashboardViewModel
 
 
 class Repository : Fragment() {

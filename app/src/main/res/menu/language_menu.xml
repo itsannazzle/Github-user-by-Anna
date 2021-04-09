@@ -5,4 +5,9 @@
         android:id="@+id/action_change_settings"
         android:title="@string/language_setting"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_setting"
+        android:title="Set reminder"
+        app:showAsAction="never"/>
+
 </menu>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuser.adapter.SearchResultAdapter
 import com.example.githubuser.databinding.FragmentFollowingBinding
 import com.example.githubuser.model.User
+import com.example.githubuser.viewmodel.ExploreViewModel
 
 
 class Following : Fragment() {

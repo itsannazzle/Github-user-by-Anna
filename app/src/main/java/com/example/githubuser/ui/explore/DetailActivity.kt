@@ -6,8 +6,10 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.githubuser.R
+import com.example.githubuser.adapter.SectionAdapter
 import com.example.githubuser.databinding.ActivityDetailBinding
 import com.example.githubuser.model.User
+import com.example.githubuser.viewmodel.ExploreViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
@@ -32,6 +34,7 @@ class DetailActivity : AppCompatActivity() {
         binding.viewpager2.adapter = sectionAdapter
         TabLayoutMediator(binding.tablayout, binding.viewpager2) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
+            
         }.attach()
     }
 

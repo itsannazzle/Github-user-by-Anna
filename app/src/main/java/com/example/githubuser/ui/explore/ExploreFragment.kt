@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuser.adapter.SearchResultAdapter
 import com.example.githubuser.databinding.FragmentExploreBinding
 import com.example.githubuser.model.User
+import com.example.githubuser.viewmodel.ExploreViewModel
 
 class ExploreFragment : Fragment() {
     private val exploreViewModel: ExploreViewModel by activityViewModels()
@@ -56,6 +57,7 @@ class ExploreFragment : Fragment() {
             binding.searchResult.adapter = searchResultAdapter
             binding.searchResult.layoutManager = LinearLayoutManager(activity)
             showLoading(false)
+            binding.textView7.setText("Search result")
             binding.textView7.visibility = View.VISIBLE
         }
         }
@@ -65,6 +67,7 @@ class ExploreFragment : Fragment() {
                 binding.searchIcon.clearFocus()
                 if (query != null) {
                     exploreViewModel.loadUser(query)
+
                 }
                 Log.d(TAG,"search successful")
                 showLoading(true)

@@ -11,7 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/GitLightTheme">
-        <activity android:name=".ui.explore.DetailActivity"></activity>
+        <receiver
+            android:name=".ui.setting.MyReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <activity
+            android:name=".ui.setting.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".ui.explore.DetailActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
