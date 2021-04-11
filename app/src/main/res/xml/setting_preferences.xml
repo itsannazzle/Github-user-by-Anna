@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:iconSpaceReserved="false">
+
+    <Preference
+        android:key="@string/key_language"
+        android:title="@string/language_setting"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Change language"
+        app:iconSpaceReserved="false"/>
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/key_switch"
+        app:iconSpaceReserved="false"
+        app:singleLineTitle="true"
+        android:summary="Daily reminder"
+        android:title="Alarm"/>
+
+</PreferenceScreen>
