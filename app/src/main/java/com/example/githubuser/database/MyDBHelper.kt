@@ -11,9 +11,6 @@ class MyDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,nul
         val SQL_CREATE_ENTRIES = "CREATE TABLE ${MyDBContract.UserDB.TABLE_NAME}" +
                 "(${MyDBContract.UserDB.ID} INTEGER PRIMARY KEY," +
                 "${MyDBContract.UserDB.USERNAME} TEXT NOT NULL," +
-                "${MyDBContract.UserDB.NAME} TEXT," +
-                "${MyDBContract.UserDB.BIO} TEXT," +
-                "${MyDBContract.UserDB.BIO} TEXT," +
                 "${MyDBContract.UserDB.USER_PICTURE} TEXT)"
 
 

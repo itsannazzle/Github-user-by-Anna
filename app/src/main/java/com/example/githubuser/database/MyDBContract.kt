@@ -1,16 +1,22 @@
 package com.example.githubuser.database
 
+import android.net.Uri
 import android.provider.BaseColumns
 
-class MyDBContract {
-    class UserDB : BaseColumns{
+object MyDBContract {
+    const val AUTHORITY = "com.example.belajardatabase"
+    const val SCHEME = "content"
+    internal class UserDB : BaseColumns{
         companion object {
-            val TABLE_NAME = "favorite_user"
-            val ID = "user_id"
-            val USERNAME = "username"
-            val NAME = "name"
-            val USER_PICTURE = "profile_pic"
-            val BIO = "bio"
+            const val TABLE_NAME = "favorite_user"
+            const val ID = "user_id"
+            const val USERNAME = "username"
+            const val USER_PICTURE = "profile_pic"
+
+            val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
+                    .authority(AUTHORITY)
+                    .appendPath(TABLE_NAME)
+                    .build()
         }
     }
 }

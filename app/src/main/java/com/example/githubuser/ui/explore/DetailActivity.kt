@@ -1,12 +1,19 @@
 package com.example.githubuser.ui.explore
 
+import android.content.ContentValues
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.githubuser.R
 import com.example.githubuser.adapter.SectionAdapter
+import com.example.githubuser.database.FavoriteHelper
+import com.example.githubuser.database.MyDBContract.UserDB.Companion.CONTENT_URI
+import com.example.githubuser.database.MyDBContract.UserDB.Companion.USERNAME
+import com.example.githubuser.database.MyDBContract.UserDB.Companion.USER_PICTURE
 import com.example.githubuser.databinding.ActivityDetailBinding
 import com.example.githubuser.model.User
 import com.example.githubuser.viewmodel.ExploreViewModel
@@ -82,6 +89,39 @@ class DetailActivity : AppCompatActivity() {
 
             })
 
+        }
+        val userHelper = FavoriteHelper.getInstance(applicationContext)
+        userHelper.open()
+        if(userHelper.check(selectedUser!!.username)){
+            if (exploreViewModel.isFavorite) {
+                checkFavorite(exploreViewModel.isFavorite)
+            }else{
+                checkFavorite(!exploreViewModel.isFavorite)
+            }
+        }
+        checkFavorite(userHelper.check(selectedUser!!.username))
+        binding.iconFavorite.setOnClickListener {
+            if (exploreViewModel.isFavorite){
+                contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + selectedUser.id),null,null)
+                Toast.makeText(this, "User deleted from favorite", Toast.LENGTH_SHORT).show()
+            } else{
+                val values = ContentValues().apply {
+                    put(USERNAME, selectedUser.username)
+                    put(USER_PICTURE, selectedUser.avatarUrl)
+                }
+                contentResolver.insert(CONTENT_URI, values)
+                Toast.makeText(this,"User added to favorite", Toast.LENGTH_SHORT).show()
+            }
+        }
+        checkFavorite(!exploreViewModel.isFavorite)
+    }
+
+    private fun checkFavorite(isFavorite : Boolean){
+        exploreViewModel.isFavorite = isFavorite
+        if (isFavorite){
+            binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
+        } else {
+            binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
         }
     }
 
