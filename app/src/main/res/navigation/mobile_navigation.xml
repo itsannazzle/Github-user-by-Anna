@@ -22,4 +22,14 @@
         android:name="com.example.githubuser.ui.favorite.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/favorite"
+        android:name="com.example.githubuser.ui.favorite.Favorite"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <activity
+        android:id="@+id/dailyReminder"
+        android:name="com.example.githubuser.ui.setting.DailyReminder"
+        android:label="activity_daily_reminder"
+        tools:layout="@layout/activity_daily_reminder" />
 </navigation>

@@ -1,9 +1,9 @@
 package com.example.githubuser.helper
 
 import android.database.Cursor
-import android.provider.BaseColumns._ID
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.USERNAME
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.USER_PICTURE
+import com.example.githubuser.database.MyDBContract.UserDB.Companion._ID
 import com.example.githubuser.model.User
 
 object MappingHelper {

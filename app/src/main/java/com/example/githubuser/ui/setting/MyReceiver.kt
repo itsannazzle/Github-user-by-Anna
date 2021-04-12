@@ -37,8 +37,6 @@ class MyReceiver : BroadcastReceiver() {
         }
     }
 
-
-
     private fun showAlarmNotification(context: Context, title: String, message: String, notifId: Int) {
 
         val CHANNEL_ID = "Channel_1"
@@ -78,8 +76,8 @@ class MyReceiver : BroadcastReceiver() {
 
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 9)
-            set(Calendar.MINUTE, 0)
+            set(Calendar.HOUR_OF_DAY, 10)
+            set(Calendar.MINUTE, 25)
             set(Calendar.SECOND,0)
         }
 
@@ -87,7 +85,7 @@ class MyReceiver : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getBroadcast(context, ID_REMINDER, intent, 0)
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
 
-        Toast.makeText(context, "Reminder is set up at ${calendar.timeInMillis}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Reminder is ON", Toast.LENGTH_SHORT).show()
     }
 
     fun cancelAlarm(context: Context) {

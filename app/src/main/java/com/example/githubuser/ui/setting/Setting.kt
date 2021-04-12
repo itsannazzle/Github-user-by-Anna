@@ -44,7 +44,6 @@ class Setting : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreference
             true
         }
 
-
     }
 
     override fun onResume() {

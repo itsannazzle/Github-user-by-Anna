@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.githubuser">
-
+    <permission android:name="com.example.githubuser.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.example.githubuser.WRITE_DATABASE" android:protectionLevel="normal"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,14 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/GitLightTheme">
+        <provider
+            android:name=".contentprovider.GithubProvider"
+            android:authorities="com.example.githubuser"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.githubuser.READ_DATABASE"
+            android:writePermission="com.example.githubuser.WRITE_DATABASE"/>
         <receiver
             android:name=".ui.setting.MyReceiver"
             android:enabled="true"
             android:exported="true"></receiver>
 
-        <activity
-            android:name=".ui.setting.SettingsActivity"
-            android:label="@string/title_activity_settings" />
+        <activity android:name=".ui.setting.DailyReminder" />
         <activity android:name=".ui.explore.DetailActivity" />
         <activity
             android:name=".MainActivity"

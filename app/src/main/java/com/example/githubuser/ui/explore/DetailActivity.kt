@@ -88,25 +88,28 @@ class DetailActivity : AppCompatActivity() {
             }
 
             })
+            val userHelper = FavoriteHelper.getInstance(applicationContext)
+            userHelper.open()
+            if(userHelper.check(selectedUser.username)){
+                if (exploreViewModel.isFavorite) {
+                    checkFavorite(exploreViewModel.isFavorite)
+                }else{
+                    checkFavorite(!exploreViewModel.isFavorite)
+                }
+            }
+            checkFavorite(userHelper.check(selectedUser.username))
 
         }
-        val userHelper = FavoriteHelper.getInstance(applicationContext)
-        userHelper.open()
-        if(userHelper.check(selectedUser!!.username)){
-            if (exploreViewModel.isFavorite) {
-                checkFavorite(exploreViewModel.isFavorite)
-            }else{
-                checkFavorite(!exploreViewModel.isFavorite)
-            }
-        }
-        checkFavorite(userHelper.check(selectedUser!!.username))
+
+
         binding.iconFavorite.setOnClickListener {
             if (exploreViewModel.isFavorite){
-                contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + selectedUser.id),null,null)
+                contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + selectedUser!!.id),null,null)
                 Toast.makeText(this, "User deleted from favorite", Toast.LENGTH_SHORT).show()
+                binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
             } else{
                 val values = ContentValues().apply {
-                    put(USERNAME, selectedUser.username)
+                    put(USERNAME, selectedUser!!.username)
                     put(USER_PICTURE, selectedUser.avatarUrl)
                 }
                 contentResolver.insert(CONTENT_URI, values)
