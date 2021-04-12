@@ -19,5 +19,17 @@ object MappingHelper {
         }
         return userDetail
     }
+
+    fun mapCursorToObject(userCursor: Cursor?) :User{
+        var userDetail = User()
+        userCursor?.apply {
+            moveToFirst()
+            val id = getInt(getColumnIndexOrThrow(_ID))
+            val username = getString(getColumnIndexOrThrow(USERNAME))
+            val profile_pic = getString(getColumnIndexOrThrow(USER_PICTURE))
+            userDetail= User(username,profile_pic,id)
+        }
+        return userDetail
+    }
   
 }

@@ -40,7 +40,7 @@ class Following : Fragment() {
         val selectedUser = activity?.intent?.getParcelableExtra<User>(DetailActivity.EXTRA_DATA)
         if (selectedUser != null) {
 
-            exploreViewModel.detailUserFollowing(selectedUser.username)
+            exploreViewModel.detailUserFollowing(selectedUser.username!!)
 
             binding.rvFollowing.adapter = searchResultAdapter
             binding.rvFollowing.layoutManager = LinearLayoutManager(activity)

@@ -8,10 +8,10 @@ import kotlinx.parcelize.Parcelize
 data class User (
         /*data class turunan dari search user*/
     @SerializedName("login")
-    val username : String,
+    val username : String ="",
 
     @SerializedName("avatar_url")
-    val avatarUrl : String,
+    val avatarUrl : String? ="",
 
     val id : Int =0
 

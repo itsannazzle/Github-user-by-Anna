@@ -1,2 +1,3 @@
+include ':anothergitapp'
 include ':app'
 rootProject.name = "Git Hub User"

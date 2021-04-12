@@ -23,4 +23,13 @@
     <string name="searchhint">안나 카레니나</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">안녕하세요 빈 조각</string></resources>
+    <string name="hello_blank_fragment">안녕하세요 빈 조각</string>
+    <string name="popular_user">안나 카레니나 user</string>
+<string name="overview">안나 카레니나</string>
+<string name="project">안나 카레니나</string>
+<string name="text_package">저장소</string>
+<string name="favorite">저장소</string>
+<string name="title_activity_settings">저장소</string>
+<string name="key_language">key_lang</string>
+<string name="key_switch">key_switch</string>
+</resources>

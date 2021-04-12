@@ -24,4 +24,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Halo fragment kosong</string>
+    <string name="popular_user">User terpopuler</string>
+    <string name="overview">Gambaram</string>
+    <string name="project">Projek</string>
+    <string name="text_package">Paket</string>
+    <string name="favorite">Kesukaam</string>
+    <string name="title_activity_settings">Aktivitas pengaturan</string>
+    <string name="key_language">key_lang</string>
+    <string name="key_switch">key_switch</string>
 </resources>

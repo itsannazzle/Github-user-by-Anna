@@ -44,18 +44,20 @@ class DetailActivity : AppCompatActivity() {
         val sectionAdapter = SectionAdapter(this)
         showDetail()
         binding.iconFavorite.setOnClickListener {
-            if (userHelper.check(selectedUser!!.username)) {
-                contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + selectedUser.id), null, null)
-                Toast.makeText(this, "User deleted from favorite", Toast.LENGTH_SHORT).show()
-                binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
-            } else {
-                val values = ContentValues().apply {
-                    put(USERNAME, selectedUser.username)
-                    put(USER_PICTURE, selectedUser.avatarUrl)
+            if (selectedUser != null) {
+                if (selectedUser.username?.let { it1 -> userHelper.check(it1) }!!) {
+                    contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + selectedUser.id), null, null)
+                    Toast.makeText(this, "User deleted from favorite", Toast.LENGTH_SHORT).show()
+                    binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
+                } else {
+                    val values = ContentValues().apply {
+                        put(USERNAME, selectedUser.username)
+                        put(USER_PICTURE, selectedUser.avatarUrl)
+                    }
+                    contentResolver.insert(CONTENT_URI, values)
+                    Toast.makeText(this, "User added to favorite", Toast.LENGTH_SHORT).show()
+                    binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
                 }
-                contentResolver.insert(CONTENT_URI, values)
-                Toast.makeText(this, "User added to favorite", Toast.LENGTH_SHORT).show()
-                binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
             }
         }
         binding.viewpager2.adapter = sectionAdapter
@@ -68,7 +70,7 @@ class DetailActivity : AppCompatActivity() {
     private fun showDetail() {
         val selectedUser = intent.getParcelableExtra<User>(EXTRA_DATA)
         if (selectedUser != null) {
-            exploreViewModel.detailUser(selectedUser.username)
+            selectedUser.username?.let { exploreViewModel.detailUser(it) }
             exploreViewModel.showDetailUser.observe(this, {
 
                 binding.detailUsername.text = it.username
@@ -106,12 +108,10 @@ class DetailActivity : AppCompatActivity() {
                             .load(it.avatar)
                             .into(binding.detailImage)
                 }
-
             })
 
             userHelper.open()
-
-            if (userHelper.check(selectedUser.username)) {
+            if (selectedUser.username?.let { userHelper.check(it) }!!) {
                 binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
             } else{
                 binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
