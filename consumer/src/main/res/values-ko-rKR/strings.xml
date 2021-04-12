@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github 사용자</string>
+    <string name="title_home">집</string>
+    <string name="title_dashboard">계기반</string>
+    <string name="title_notifications">알림</string>
+    <string name="myname">안나 카레니나</string>
+    <string name="followers">추종자</string>
+    <string name="username">itsannazzle</string>
+    <string name="following">수행원</string>
+    <string name="explore">탐색</string>
+    <string name="pull_req">Pull 요청</string>
+    <string name="market">시장</string>
+    <string name="title_repo">저장소</string>
+    <string name="description">기술</string>
+    <string name="prog_lang">kotlin</string>
+    <string name="stars">별</string>
+    <string name="branch">분기</string>
+    <string name="follow">따르다</string>
+    <string name="language_setting">언어 설정</string>
+    <string name="repositories">저장소</string>
+    <string name="search_result">검색 결과</string>
+    <string name="searchhint">안나 카레니나</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">안녕하세요 빈 조각</string>
+<string name="popular_user">검색 결과</string>
+<string name="overview">따르다</string>
+<string name="project">저장소</string>
+<string name="text_package">저장소</string>
+<string name="favorite">저장소</string>
+<string name="title_activity_settings">언어 설정</string>
+<string name="key_language">key_lang</string>
+<string name="key_switch">key_switch</string>
+</resources>

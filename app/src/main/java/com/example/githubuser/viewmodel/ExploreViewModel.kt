@@ -17,7 +17,6 @@ class ExploreViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
     }
-    var isFavorite = false
     val text: LiveData<String> = _text
 
     private val listUser : MutableLiveData<List<User>> = MutableLiveData()

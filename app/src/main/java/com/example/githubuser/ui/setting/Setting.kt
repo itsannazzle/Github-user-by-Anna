@@ -4,10 +4,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.Settings
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
@@ -65,7 +61,7 @@ class Setting : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreference
             switchPreference.isChecked = reminderOn
             if (reminderOn){
                 context?.let {
-                    myReceiver.setDailyReminder(it,MyReceiver.TYPE_REMINDER,"Reminder is on")
+                    myReceiver.setDailyReminder(it,MyReceiver.TYPE_REMINDER,"Hello, do forget to push")
                 }
             } else {
                 context?.let { myReceiver.cancelAlarm(it) }

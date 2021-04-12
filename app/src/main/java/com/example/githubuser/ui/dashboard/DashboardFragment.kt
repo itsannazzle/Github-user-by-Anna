@@ -47,18 +47,18 @@ class DashboardFragment : Fragment() {
 
 
     private fun showDetail() {
-
             exploreViewModel.detailUser("itsannazzle")
             exploreViewModel.showDetailUser.observe(requireActivity(), {
-
                 if (it.followers.toString().isNullOrEmpty()){
                     binding.follwers.text = StringBuilder("-")
-                } else {
+                }
+                else {
                     binding.follwers.text = StringBuilder("${it.followers.toString()} Followers")
                 }
                 if (it.following.toString().isNullOrEmpty()){
                     binding.following.text = StringBuilder("-")
-                } else{
+                }
+                else{
                     binding.following.text = StringBuilder("${it.followers.toString()} Following")
                 }
                 if(it.avatar.isNullOrEmpty()){

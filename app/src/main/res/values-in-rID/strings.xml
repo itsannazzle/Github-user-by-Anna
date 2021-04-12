@@ -23,5 +23,14 @@
     <string name="searchhint">Cari pengguna</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="popular_user">User terpopuler</string>
+    <string name="overview">Gambaran</string>
+    <string name="project">Proyek</string>
+    <string name="text_package">Paket</string>
+    <string name="favorite">Kesukaan</string>
+    <string name="title_activity_settings">Kegiatan pengaturan</string>
+    <string name="key_language">key_lang</string>
+    <string name="key_switch">key_switch</string>
     <string name="hello_blank_fragment">Halo fragment kosong</string>
+
 </resources>

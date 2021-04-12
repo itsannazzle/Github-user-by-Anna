@@ -24,7 +24,8 @@
         app:layout_constraintTop_toBottomOf="@id/detail_username"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_fa_regular_heart"/>
+        android:src="@drawable/ic_fa_regular_heart"
+        android:contentDescription="@string/myname" />
 
 
 

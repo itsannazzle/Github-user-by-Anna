@@ -18,7 +18,6 @@ import com.example.githubuser.databinding.ActivityDetailBinding
 import com.example.githubuser.model.User
 import com.example.githubuser.viewmodel.ExploreViewModel
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlin.math.exp
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding

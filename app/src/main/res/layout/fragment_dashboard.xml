@@ -14,7 +14,8 @@
         android:layout_height="55dp"
         android:src="@drawable/aku"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
 
 
     <TextView

@@ -17,8 +17,8 @@ import java.util.*
 
 class MyReceiver : BroadcastReceiver() {
     companion object{
-        const val TYPE_REMINDER = "REMINDER"
-        const val EXTRA_MESSAGE = "Daily reminder"
+        const val TYPE_REMINDER = "Daily reminder"
+        const val EXTRA_MESSAGE = "Daily message"
 
         private const val ID_REMINDER = 23
 
@@ -76,8 +76,8 @@ class MyReceiver : BroadcastReceiver() {
 
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 10)
-            set(Calendar.MINUTE, 25)
+            set(Calendar.HOUR_OF_DAY, 9)
+            set(Calendar.MINUTE, 0)
             set(Calendar.SECOND,0)
         }
 
@@ -85,7 +85,7 @@ class MyReceiver : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getBroadcast(context, ID_REMINDER, intent, 0)
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
 
-        Toast.makeText(context, "Reminder is ON", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Reminder in on", Toast.LENGTH_SHORT).show()
     }
 
     fun cancelAlarm(context: Context) {
