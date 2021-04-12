@@ -55,16 +55,14 @@ class FavoriteHelper(context: Context) {
     fun update(id : String, values: ContentValues?): Int {
         return database.update(DATABASE_TABLE, values, "$_ID = ?", arrayOf(id))
     }
-    fun deleteByUsername(id: String): Int {
+    fun deleteById(id: String): Int {
         return database.delete(DATABASE_TABLE, "$_ID = '$id'", null)
     }
 
     fun check(username: String): Boolean {
         database = myDBHelper.writableDatabase
-        val selectUsername =
-            "SELECT * FROM $DATABASE_TABLE WHERE $USERNAME =?"
-        val cursor =
-            database.rawQuery(selectUsername, arrayOf(username))
+        val selectUsername = "SELECT * FROM $DATABASE_TABLE WHERE $USERNAME =?"
+        val cursor = database.rawQuery(selectUsername, arrayOf(username))
         var check = false
         if (cursor.moveToFirst()) {
             check = true

@@ -10,7 +10,7 @@ import com.example.githubuser.database.FavoriteHelper
 import com.example.githubuser.database.MyDBContract.AUTHORITY
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.CONTENT_URI
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.TABLE_NAME
-import com.example.githubuser.database.MyDBHelper
+
 
 
 class GithubProvider : ContentProvider() {
@@ -20,14 +20,14 @@ class GithubProvider : ContentProvider() {
         private val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
         private lateinit var favoriteHelper: FavoriteHelper
 
+
         init {
-
             sUriMatcher.addURI(AUTHORITY, TABLE_NAME, FAVORITE)
-
             sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/#", FAVORITE_ID)
         }
     }
     override fun onCreate(): Boolean {
+
         favoriteHelper = FavoriteHelper.getInstance(context as Context)
         favoriteHelper.open()
         return true
@@ -56,7 +56,7 @@ class GithubProvider : ContentProvider() {
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
         val deleted: Int = when (FAVORITE_ID) {
-            sUriMatcher.match(uri) -> favoriteHelper.deleteByUsername(uri.lastPathSegment.toString())
+            sUriMatcher.match(uri) -> favoriteHelper.deleteById(uri.lastPathSegment.toString())
             else -> 0
         }
         context?.contentResolver?.notifyChange(CONTENT_URI, null)

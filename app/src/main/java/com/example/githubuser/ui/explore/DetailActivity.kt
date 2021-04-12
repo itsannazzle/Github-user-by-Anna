@@ -18,9 +18,13 @@ import com.example.githubuser.databinding.ActivityDetailBinding
 import com.example.githubuser.model.User
 import com.example.githubuser.viewmodel.ExploreViewModel
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlin.math.exp
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
+    private lateinit var userHelper: FavoriteHelper
+
+
     private val exploreViewModel: ExploreViewModel by viewModels()
     companion object {
         const val EXTRA_DATA = "extra_data"
@@ -35,9 +39,25 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val selectedUser = intent.getParcelableExtra<User>(EXTRA_DATA)
+        userHelper = FavoriteHelper.getInstance(applicationContext)
         val sectionAdapter = SectionAdapter(this)
         showDetail()
+        binding.iconFavorite.setOnClickListener {
+            if (userHelper.check(selectedUser!!.username)) {
+                contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + selectedUser.id), null, null)
+                Toast.makeText(this, "User deleted from favorite", Toast.LENGTH_SHORT).show()
+                binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
+            } else {
+                val values = ContentValues().apply {
+                    put(USERNAME, selectedUser.username)
+                    put(USER_PICTURE, selectedUser.avatarUrl)
+                }
+                contentResolver.insert(CONTENT_URI, values)
+                Toast.makeText(this, "User added to favorite", Toast.LENGTH_SHORT).show()
+                binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
+            }
+        }
         binding.viewpager2.adapter = sectionAdapter
         TabLayoutMediator(binding.tablayout, binding.viewpager2) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
@@ -47,84 +67,57 @@ class DetailActivity : AppCompatActivity() {
 
     private fun showDetail() {
         val selectedUser = intent.getParcelableExtra<User>(EXTRA_DATA)
-        if (selectedUser != null){
+        if (selectedUser != null) {
             exploreViewModel.detailUser(selectedUser.username)
             exploreViewModel.showDetailUser.observe(this, {
 
                 binding.detailUsername.text = it.username
-                if (it.name.isNullOrEmpty()){
+                if (it.name.isNullOrEmpty()) {
                     binding.detailName.text = StringBuilder("-")
                 } else {
                     binding.detailName.text = it.name
                 }
-                if (it.bio.isNullOrEmpty()){
+                if (it.bio.isNullOrEmpty()) {
                     binding.detailBio.text = StringBuilder("-")
-                } else{
+                } else {
                     binding.detailBio.text = it.bio
                 }
-                if (it.company.isNullOrEmpty()){
+                if (it.company.isNullOrEmpty()) {
                     binding.detailOffice.text = StringBuilder("-")
-                } else{
+                } else {
                     binding.detailOffice.text = it.company
                 }
-                if (it.location.isNullOrEmpty()){
+                if (it.location.isNullOrEmpty()) {
                     binding.detailLocation.text = StringBuilder("-")
-                } else{
+                } else {
                     binding.detailLocation.text = it.location
                 }
-                if (it.blog.isNullOrEmpty()){
+                if (it.blog.isNullOrEmpty()) {
                     binding.detailBlog.text = StringBuilder("-")
-                } else{
+                } else {
                     binding.detailBlog.text = it.blog
                 }
-                if(it.avatar.isNullOrEmpty()){
+                if (it.avatar.isNullOrEmpty()) {
                     Glide.with(applicationContext)
                             .load(R.drawable.ic_dashboard)
                             .into(binding.detailImage)
-            } else {
+                } else {
                     Glide.with(applicationContext)
                             .load(it.avatar)
                             .into(binding.detailImage)
-            }
+                }
 
             })
-            val userHelper = FavoriteHelper.getInstance(applicationContext)
+
             userHelper.open()
-            if(userHelper.check(selectedUser.username)){
-                if (exploreViewModel.isFavorite) {
-                    checkFavorite(exploreViewModel.isFavorite)
-                }else{
-                    checkFavorite(!exploreViewModel.isFavorite)
-                }
-            }
-            checkFavorite(userHelper.check(selectedUser.username))
 
-        }
-
-
-        binding.iconFavorite.setOnClickListener {
-            if (exploreViewModel.isFavorite){
-                contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + selectedUser!!.id),null,null)
-                Toast.makeText(this, "User deleted from favorite", Toast.LENGTH_SHORT).show()
-                binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
+            if (userHelper.check(selectedUser.username)) {
+                binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
             } else{
-                val values = ContentValues().apply {
-                    put(USERNAME, selectedUser!!.username)
-                    put(USER_PICTURE, selectedUser.avatarUrl)
-                }
-                contentResolver.insert(CONTENT_URI, values)
-                Toast.makeText(this,"User added to favorite", Toast.LENGTH_SHORT).show()
+                binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
             }
-        }
-        checkFavorite(!exploreViewModel.isFavorite)
-    }
 
-    private fun checkFavorite(isFavorite : Boolean){
-        exploreViewModel.isFavorite = isFavorite
-        if (isFavorite){
-            binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
-        } else {
-            binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
+
         }
     }
 
