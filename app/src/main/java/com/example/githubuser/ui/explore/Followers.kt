@@ -38,7 +38,7 @@ class Followers : Fragment() {
         }
         }
 
-        val selectedUser = activity?.intent?.getParcelableExtra<User>(DetailActivity.EXTRA_DATA)
+        val selectedUser = activity?.intent?.getParcelableExtra<User>(ExploreFragment.EXTRA_ID)
         if (selectedUser != null) {
             exploreViewModel.detailUserFollowers(selectedUser.username)
 

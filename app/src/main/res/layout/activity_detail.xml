@@ -35,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/myname"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/detail_image"
@@ -128,9 +129,13 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@id/detail_blog"
           app:tabBackground="@color/white"
-          app:tabIndicatorHeight="4dp"
-          app:tabIndicatorColor="@color/black"
-          app:tabTextColor="@color/git_blue" />
+          app:tabIndicatorHeight="2dp"
+          app:tabIndicatorColor="@color/green"
+          app:tabSelectedTextColor="@color/green"
+          app:tabTextColor="@color/grey"
+          app:tabIconTint="@color/ic_tab_color"
+          app:tabTextAppearance="@style/CustomTabStyle"
+          app:tabInlineLabel="true" />
 
       <androidx.viewpager2.widget.ViewPager2
           android:id="@+id/viewpager2"

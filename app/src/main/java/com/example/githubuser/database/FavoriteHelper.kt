@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
-import androidx.constraintlayout.widget.Constraints
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.TABLE_NAME
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.USERNAME
 import com.example.githubuser.database.MyDBContract.UserDB.Companion._ID
@@ -72,7 +71,7 @@ class FavoriteHelper(context: Context) {
             while (cursor.moveToNext()) {
                 i++
             }
-            Log.d(Constraints.TAG, String.format("%d user found", i))
+            Log.d(FavoriteHelper::class.java.simpleName, String.format("%d user found", i))
         }
         cursor.close()
         return check

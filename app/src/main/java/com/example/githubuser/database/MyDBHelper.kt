@@ -9,7 +9,7 @@ class MyDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,nul
         val DATABASE_VERSION = 2
         val DATABASE_NAME = "githubUSER"
         val SQL_CREATE_ENTRIES = "CREATE TABLE ${MyDBContract.UserDB.TABLE_NAME}" +
-                "(${MyDBContract.UserDB._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "(${MyDBContract.UserDB._ID} INTEGER PRIMARY," +
                 "${MyDBContract.UserDB.USERNAME} TEXT NOT NULL," +
                 "${MyDBContract.UserDB.USER_PICTURE} TEXT)"
 

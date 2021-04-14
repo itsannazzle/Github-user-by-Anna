@@ -1,21 +1,22 @@
 package com.example.githubuser.ui.favorite
 
+import android.content.Intent
 import android.database.ContentObserver
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuser.R
 import com.example.githubuser.adapter.SearchResultAdapter
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.CONTENT_URI
 import com.example.githubuser.databinding.FragmentFavoriteBinding
 import com.example.githubuser.helper.MappingHelper
 import com.example.githubuser.model.User
+import com.example.githubuser.ui.explore.DetailActivity
+import com.example.githubuser.ui.explore.ExploreFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -25,7 +26,6 @@ import kotlinx.coroutines.launch
 class Favorite : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
     private lateinit var adapter : SearchResultAdapter
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -39,7 +39,6 @@ class Favorite : Fragment() {
                 loadFavotiteUserAsync()
             }
         }
-
         adapter = SearchResultAdapter()
         binding.rvFavorite.adapter = adapter
         binding.rvFavorite.layoutManager = LinearLayoutManager(activity)
@@ -60,8 +59,13 @@ class Favorite : Fragment() {
             val user = deferredUser.await()
             if (user.isNotEmpty()){
                 adapter.addUser(user)
-            } else {
-
+                adapter.setOnItemCallback(object : SearchResultAdapter.OnItemCallback {
+                    override fun onItemClicked(user: User) {
+                        val intent = Intent(activity, DetailActivity::class.java)
+                        intent.putExtra(ExploreFragment.EXTRA_ID,user)
+                        startActivity(intent)
+                    }
+                })
             }
         }
     }

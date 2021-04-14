@@ -94,7 +94,7 @@ class ExploreViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.d(TAG, "Request time over")
             }
 
         })

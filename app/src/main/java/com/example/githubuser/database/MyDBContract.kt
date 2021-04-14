@@ -18,6 +18,8 @@ object MyDBContract {
                     .authority(AUTHORITY)
                     .appendPath(TABLE_NAME)
                     .build()
+
+            //Content uri = content:com.example.githubuser.favorite_user
         }
     }
 }

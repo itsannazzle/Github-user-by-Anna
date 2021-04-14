@@ -1,5 +1,6 @@
 package com.example.githubuser.ui.explore
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,9 @@ class ExploreFragment : Fragment() {
     private lateinit var binding: FragmentExploreBinding
     private lateinit var searchResultAdapter: SearchResultAdapter
     private val TAG = ExploreFragment::class.java.simpleName
+    companion object {
+        const val EXTRA_ID = "ID"
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -27,47 +31,22 @@ class ExploreFragment : Fragment() {
         binding = FragmentExploreBinding.inflate(inflater, container, false)
         searchResultAdapter = SearchResultAdapter()
         searchResultAdapter.notifyDataSetChanged()
+        binding.searchResult.adapter = searchResultAdapter
+        binding.searchResult.layoutManager = LinearLayoutManager(activity)
+
         showLoading(true)
-
-        exploreViewModel.showPopularUser.observe(viewLifecycleOwner){
-            User -> if ( User != null) {
-            searchResultAdapter.addUser(User as ArrayList<User>)
-            binding.searchResult.adapter = searchResultAdapter
-            binding.searchResult.layoutManager = LinearLayoutManager(activity)
-            showLoading(false)
-        }
-        }
-        exploreViewModel.popolarUser()
-        binding.textView7.setText("Popular user")
-        binding.searchIcon.setOnClickListener {
-            binding.searchIcon.isIconified = false
-
-        }
+        showPopularUser()
 
         return binding.root
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        exploreViewModel.getListUser.observe(viewLifecycleOwner){
-            User -> if (User != null) {
-            searchResultAdapter.addUser(User as ArrayList<User>)
-            binding.searchResult.adapter = searchResultAdapter
-            binding.searchResult.layoutManager = LinearLayoutManager(activity)
-            showLoading(false)
-            binding.textView7.setText("Search result")
-            binding.textView7.visibility = View.VISIBLE
-        }
-        }
-
         binding.searchIcon.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 binding.searchIcon.clearFocus()
                 if (query != null) {
                     exploreViewModel.loadUser(query)
-
                 }
                 Log.d(TAG,"search successful")
                 showLoading(true)
@@ -75,6 +54,7 @@ class ExploreFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                showSearchResult()
                 return false
             }
         })
@@ -85,6 +65,46 @@ class ExploreFragment : Fragment() {
             binding.progresBar.visibility = View.VISIBLE
         } else {
             binding.progresBar.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun showPopularUser(){
+        exploreViewModel.showPopularUser.observe(viewLifecycleOwner){
+            User -> if ( User != null) {
+            searchResultAdapter.addUser(User as ArrayList<User>)
+            searchResultAdapter.setOnItemCallback(object : SearchResultAdapter.OnItemCallback {
+                override fun onItemClicked(user: User) {
+                    val intent = Intent(activity,DetailActivity::class.java)
+                    intent.putExtra(EXTRA_ID,user)
+                    startActivity(intent)
+                }
+            })
+            showLoading(false)
+        }
+        }
+        exploreViewModel.popolarUser()
+        binding.textView7.setText("Popular user")
+        binding.searchIcon.setOnClickListener {
+            binding.searchIcon.isIconified = false
+
+        }
+    }
+
+    private fun showSearchResult(){
+        exploreViewModel.getListUser.observe(viewLifecycleOwner){
+            User -> if (User != null) {
+            searchResultAdapter.addUser(User as ArrayList<User>)
+            searchResultAdapter.setOnItemCallback(object : SearchResultAdapter.OnItemCallback {
+                override fun onItemClicked(user: User) {
+                    val intent = Intent(activity,DetailActivity::class.java)
+                    intent.putExtra(EXTRA_ID,user)
+                    startActivity(intent)
+                }
+            })
+            showLoading(false)
+            binding.textView7.setText("Search result")
+            binding.textView7.visibility = View.VISIBLE
+        }
         }
     }
 

@@ -13,7 +13,7 @@ data class User (
     @SerializedName("avatar_url")
     val avatarUrl : String,
 
-    val id : Int =0
+    val id : Int
 
 ) : Parcelable
 

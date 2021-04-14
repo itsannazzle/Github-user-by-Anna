@@ -3,6 +3,7 @@ package com.example.githubuser.ui.explore
 import android.content.ContentValues
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
@@ -14,6 +15,7 @@ import com.example.githubuser.database.FavoriteHelper
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.CONTENT_URI
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.USERNAME
 import com.example.githubuser.database.MyDBContract.UserDB.Companion.USER_PICTURE
+import com.example.githubuser.database.MyDBContract.UserDB.Companion._ID
 import com.example.githubuser.databinding.ActivityDetailBinding
 import com.example.githubuser.model.User
 import com.example.githubuser.viewmodel.ExploreViewModel
@@ -22,11 +24,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var userHelper: FavoriteHelper
-
+    private var isUserondb = false
 
     private val exploreViewModel: ExploreViewModel by viewModels()
     companion object {
-        const val EXTRA_DATA = "extra_data"
         @StringRes
         private var TAB_TITLES = intArrayOf(
                 R.string.title_repo,
@@ -38,23 +39,29 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val selectedUser = intent.getParcelableExtra<User>(EXTRA_DATA)
+        val selectedUser = intent.getParcelableExtra<User>(ExploreFragment.EXTRA_ID)
         userHelper = FavoriteHelper.getInstance(applicationContext)
         val sectionAdapter = SectionAdapter(this)
         showDetail()
         binding.iconFavorite.setOnClickListener {
-            if (userHelper.check(selectedUser!!.username)) {
-                contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + selectedUser.id), null, null)
+            if (isUserondb) {
+                //Content uri = content:com.example.githubuser/favorite_user/user_id
+                contentResolver.delete(Uri.parse(CONTENT_URI.toString() + "/" + selectedUser!!.id), null, null)
+                Log.d(DetailActivity::class.java.simpleName,selectedUser.id.toString())
                 Toast.makeText(this, "User deleted from favorite", Toast.LENGTH_SHORT).show()
-                binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
+                isUserondb = false
+                checkUser(isUserondb)
             } else {
                 val values = ContentValues().apply {
-                    put(USERNAME, selectedUser.username)
+                    put(_ID,selectedUser!!.id)
+                    put(USERNAME, selectedUser!!.username)
                     put(USER_PICTURE, selectedUser.avatarUrl)
+                    Log.d(DetailActivity::class.java.simpleName,selectedUser.id.toString())
                 }
                 contentResolver.insert(CONTENT_URI, values)
                 Toast.makeText(this, "User added to favorite", Toast.LENGTH_SHORT).show()
-                binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
+                isUserondb = true
+                checkUser(isUserondb)
             }
         }
         binding.viewpager2.adapter = sectionAdapter
@@ -65,7 +72,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun showDetail() {
-        val selectedUser = intent.getParcelableExtra<User>(EXTRA_DATA)
+        val selectedUser = intent.getParcelableExtra<User>(ExploreFragment.EXTRA_ID)
         if (selectedUser != null) {
             exploreViewModel.detailUser(selectedUser.username)
             exploreViewModel.showDetailUser.observe(this, {
@@ -109,16 +116,20 @@ class DetailActivity : AppCompatActivity() {
             })
 
             userHelper.open()
-
-            if (userHelper.check(selectedUser.username)) {
-                binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
-            } else{
-                binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
-            }
-
+            isUserondb = userHelper.check(selectedUser.username)
+            checkUser(isUserondb)
 
         }
     }
+
+    fun checkUser(state : Boolean)  {
+        when(state){
+            true ->  binding.iconFavorite.setImageResource(R.drawable.ic_fa_solid_heart)
+            false ->  binding.iconFavorite.setImageResource(R.drawable.ic_fa_regular_heart)
+        }
+
+    }
+
 
 
 }
