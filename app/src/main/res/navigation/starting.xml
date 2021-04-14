@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/starting"
+    app:startDestination="@id/splashScreen">
+    <fragment
+        android:id="@+id/loginScreen"
+        android:name="com.example.githubuser.welcome.LoginScreen"
+        android:label="fragment_login_screen"
+        tools:layout="@layout/fragment_login_screen" />
+    <fragment
+        android:id="@+id/landingScreen"
+        android:name="com.example.githubuser.welcome.LandingScreen"
+        android:label="fragment_landing_screen"
+        tools:layout="@layout/fragment_landing_screen" >
+        <action
+            android:id="@+id/action_landingScreen_to_loginScreen"
+            app:destination="@id/loginScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.example.githubuser.welcome.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_landingScreen"
+            app:destination="@id/landingScreen" />
+    </fragment>
+</navigation>

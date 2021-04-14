@@ -18,33 +18,33 @@ interface ApiRequest {
     /*arraylist unutk json array*/
 
     @GET("search/users")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token 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")
     fun searchUser(@Query("q")
                    username : String) : Call<SearchUser>
     /*call aja dari json object, gapake arraylist, only generic karena data di json nya object(diawali dengan { )*/
 
     @GET("users")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token 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")
     fun popuralUser() : Call<List<User>>
 
     @GET("users/{username}/repos")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token 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")
     fun getRepos(@Path("username")
                  username: String) : Call<ArrayList<UserRepository>>
     /*pake arraylist karena data di json nya adalah array, yg di awali dengan [*/
 
     @GET("users/{username}")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token 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")
     fun getDetailUser(@Path("username")
                  username: String) : Call<Detail>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token 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")
     fun getFollowers(@Path("username")
                       username: String) : Call<List<User>>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token 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")
     fun getFollowing(@Path("username")
                      username: String) : Call<List<User>>
 

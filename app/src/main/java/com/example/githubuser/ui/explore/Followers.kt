@@ -33,7 +33,6 @@ class Followers : Fragment() {
         exploreViewModel.showFollowers.observe(viewLifecycleOwner){
             User -> if (User != null) {
             searchResultAdapter.addUser(User as ArrayList<User>)
-
             showLoading(false)
         }
         }

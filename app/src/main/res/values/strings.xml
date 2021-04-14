@@ -30,5 +30,12 @@
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
     <string name="key_language" translatable="false">key_lang</string>
     <string name="key_switch" translatable="false">key_switch</string>
-
+    <string name="subtitle">Millions of developers and companies build, ship, and maintain their software on GitHub—the largest and most advanced development platform in the world.</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="landing_title">Where the world build software</string>
+    <string name="content_desc_gitglobe">Globe picture</string>
+    <string name="enter_username">Username</string>
+    <string name="sign_in_to_github">Sign in to GitHub</string>
+    <string name="password">Password</string>
 </resources>

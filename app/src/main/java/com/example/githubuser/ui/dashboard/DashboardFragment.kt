@@ -22,6 +22,8 @@ class DashboardFragment : Fragment() {
                 R.string.project,
                 R.string.text_package
         )
+
+
     }
     override fun onCreateView(
             inflater: LayoutInflater,
