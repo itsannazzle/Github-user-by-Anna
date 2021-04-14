@@ -47,6 +47,7 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColor="@color/black"
             android:textColorLink="@color/black"
             android:textColorHighlight="@color/green"
@@ -74,6 +75,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textColorLink="@color/green"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColorHighlight="@color/green"
             android:inputType="textPassword"/>
 
@@ -92,14 +94,4 @@
         app:layout_constraintTop_toBottomOf="@+id/textField" />
 
 
-    <TextView
-        android:id="@+id/newtogt"
-        style="@style/sub_title"
-        android:layout_marginTop="40dp"
-        android:text="New to github? Sign up"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sign_in" />
 </androidx.constraintlayout.widget.ConstraintLayout>
