@@ -39,9 +39,9 @@ class DashboardFragment : Fragment() {
         TabLayoutMediator(binding.dashboardTab, binding.viewpager2) { tab, position ->
             tab.text = resources.getString(TAB_TITLE[position])
         }.attach()
-        binding.dashboardTab.getTabAt(0)?.setIcon(R.drawable.ic_book)
-        binding.dashboardTab.getTabAt(1)?.setIcon(R.drawable.ic_project)
-        binding.dashboardTab.getTabAt(2)?.setIcon(R.drawable.ic_package)
+        binding.dashboardTab.getTabAt(0)!!.setIcon(R.drawable.ic_book)
+        binding.dashboardTab.getTabAt(1)!!.setIcon(R.drawable.ic_project)
+        binding.dashboardTab.getTabAt(2)!!.setIcon(R.drawable.ic_package)
 
         showDetail()
         return binding.root

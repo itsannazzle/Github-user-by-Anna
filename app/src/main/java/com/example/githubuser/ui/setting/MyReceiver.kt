@@ -25,6 +25,7 @@ class MyReceiver : BroadcastReceiver() {
 
 
     }
+
     override fun onReceive(context: Context, intent: Intent) {
         val message = intent.getStringExtra(EXTRA_MESSAGE)
 
@@ -101,4 +102,5 @@ class MyReceiver : BroadcastReceiver() {
         alarmManager.cancel(pendingIntent)
         Toast.makeText(context, "Reminder is off", Toast.LENGTH_SHORT).show()
     }
+
 }

@@ -14,7 +14,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        buildConfigField("String", "GITHUB_TOKEN", '"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"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
